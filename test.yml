@@ -11,3 +11,9 @@
         name: nginx
         state: restarted
         enabled: true
+    - name: Create user
+      ansible.builtin.user:
+        name: Insidia
+        groups: sudo
+        state: present
+        append: true
