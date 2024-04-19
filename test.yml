@@ -1,0 +1,13 @@
+---
+- name: Test
+  hosts: demo
+  tasks:
+    - name: Test check
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+    - name: Restart & enabled nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+        enabled: true
