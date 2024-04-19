@@ -1,0 +1,4 @@
+[demo]
+
+server1  ansible_user=vagrant ansible_port=2223 ansible_host=127.0.0.1
+server2  ansible_user=vagrant ansible_port=2224 ansible_host=127.0.0.1
