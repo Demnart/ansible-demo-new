@@ -1,0 +1,10 @@
+---
+- name: Configuration
+  hosts: cluster
+  become: true
+  roles:
+    - preconfig
+#    - role: deploy
+#      message: "test"
+#    - role: deploy
+#      message: "123"
