@@ -1,0 +1,5 @@
+---
+- name: Mocking
+  ansible.builtin.command: "echo {{ test }}"
+  register: res
+  changed_when: "'0' in res.stdout"

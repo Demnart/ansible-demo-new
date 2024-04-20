@@ -1,10 +1,28 @@
 ---
-- name: Configuration
-  hosts: cluster
+- name: Deploy server
+  hosts: deploy
   become: true
   roles:
-    - preconfig
-#    - role: deploy
-#      message: "test"
-#    - role: deploy
-#      message: "123"
+    - role: preconfig
+      tags: preconfig
+    - role: deploy
+#      test: 0
+      tags: deploy
+#    - deploy
+#    - swarm_init
+
+- name: Manager
+  hosts: managers
+  become: true
+  roles:
+    - role: preconfig
+      tags: preconfig
+#    - swarm_join
+
+- name: Workers
+  hosts: workers
+  become: true
+  roles:
+    - role: preconfig
+      tags: preconfig
+#    - swarm_workers
