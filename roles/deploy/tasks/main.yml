@@ -1,5 +1,11 @@
 ---
-- name: Mocking
-  ansible.builtin.command: "echo {{ test }}"
-  register: res
-  changed_when: "'0' in res.stdout"
+- name: Create a network
+  community.docker.docker_network:
+    name: "{{ networkName }}"
+    driver: overlay
+
+- name: Deploy services
+  ansible.builtin.include_tasks: "../services/{{ item }}/service.yml"
+  vars:
+    - name: "{{ item }}"
+  loop: "{{ services }}"

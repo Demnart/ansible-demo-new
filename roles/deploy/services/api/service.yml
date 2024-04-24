@@ -1,0 +1,21 @@
+---
+- name: "{{ name }} Configuration"
+  ansible.builtin.include_tasks: "../secret.yml"
+
+- name: "{{ name }} Service deploy"
+  block:
+    - name: "{{ name }} Service deploy"
+      community.docker.docker_swarm_service:
+        name: "{{ name }}"
+        image: "localhost:500/{{ name }}:latest"
+        state: present
+        networks:
+          - name: "{{ networkName }}"
+        publish:
+          - mode: ingress
+            protocol: tcp
+            published_port: 3002
+            target_port: 3000
+        secrets:
+          - secret_name: "{{ name }}.env"
+          
