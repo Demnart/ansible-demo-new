@@ -7,7 +7,7 @@
     - name: "{{ name }} Service deploy"
       community.docker.docker_swarm_service:
         name: "{{ name }}"
-        image: "localhost:500/{{ name }}:latest"
+        image: "localhost:5000/{{ name }}:latest"
         state: present
         networks:
           - name: "{{ networkName }}"
@@ -18,3 +18,5 @@
             target_port: 3000
         secrets:
           - secret_name: "{{ name }}.env"
+            filename: "/opt/app/.env"
+  tags: "{{ name }}"
