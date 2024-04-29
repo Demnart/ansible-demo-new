@@ -5,9 +5,10 @@
   roles:
     - role: preconfig
       tags: preconfig
+    - role: build
+      tags: build
     - role: deploy
       tags: deploy
-
 
 - name: Manager
   hosts: managers
